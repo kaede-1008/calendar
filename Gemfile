@@ -6,8 +6,13 @@ git_source(:github) {|repo_name| "https://github.com/#{repo_name}" }
 
 # gem "rails"
 
-gem "sinatra"
-gem 'bcrypt'
-gem 'rake'
 gem 'activerecord'
+gem 'bcrypt'
+gem 'mysql2'
+gem 'rake'
+gem 'redcarpet'
+gem 'sinatra'
 gem 'sinatra-activerecord'
+gem 'sinatra-contrib'
+gem 'slim'
+gem 'tzinfo-data'
