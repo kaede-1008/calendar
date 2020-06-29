@@ -1,0 +1,18 @@
+h1.my-3 記事投稿画面
+
+/ 追加
+form method='post' action='/article_post' enctype='multipart/form-data'
+  .form-group
+    input.form-control type="text" name="title" value="" placeholder="タイトル"
+  .form-group
+    textarea.form-control type="text" name="body" cols="50" rows="16" placeholder="記事を入力"
+  p ・カテゴリーを選択
+  - @articles.each do |article|
+    .form-check.form-check-inline
+      input.form-check-input type="radio" name="article_id" value="#{article.id}" id="radio_#{article.id}"
+      label.form-check-label for="radio_#{article.id}"= article.name
+
+  p.mt-3 ・サムネイル画像
+  input#thumbnail type="file" name="file" accept="image/*"
+  br
+  input.btn.btn-primary.my-4 type="submit" value="投稿"

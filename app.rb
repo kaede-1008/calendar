@@ -17,14 +17,12 @@ end
 post '/login' do
     user = User.find_by(name: params[:name])
 
-    if user&.authenticate(param[:password])
+    if user&.authenticate(params[:password])
         session[:user_id] = user.id
         redirect '/create_article'
     else
         slim :login
     end
-end
-
 end
 
 get '/signup' do
@@ -34,9 +32,9 @@ end
 get '/create_article' do
     login_required
 
-    csrtf_token_generate
+    csrf_token_generate
 
-    @categories = Category.all
+    @articles = Article.all
     slim :create_article
 end
 
@@ -49,9 +47,9 @@ post '/atricle_post' do
     thumbnail_name = file ? file[:filename] : params[:thumbnail]
 
     @post = Post.new(
-        category_id: params[:category_id],
+        article_id: params[:id],
         title: params[:content],
-        
+
     )
 
 end
