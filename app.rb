@@ -26,7 +26,28 @@ post '/login' do
 end
 
 get '/signup' do
+    if logined_in?
+        redirect '/'
+    else
+        slim :signup
+    end
+end
 
+post '/signup' do
+    pass = params[:user][:password]
+    ck_pass = params[:password][:confirmation]
+    if pass == ck_pass
+        @user = User.create({:name => params[:user][:name], :email => params[:user][:email], :password => params[:user][:password]})
+    else
+        redirect '/signup'
+    end
+
+    if @user.save
+        session["user_id"] = @user.id
+        redirect '/'
+    else
+        redirect '/signup'
+    end
 end
 
 get '/create_article' do
