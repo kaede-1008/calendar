@@ -1,0 +1,19 @@
+form method='post' action='/signup'
+<li>  
+名前  
+<input type= "text" name="user[name]" placeholder="name">  
+<li>  
+メールアドレス  
+<input type= "text" name="user[email]" placeholder="email">  
+<li>  
+    <input type= "password" name="user[password]" placeholder="password" id: 'password-input', class: 'form-control', required: true, pattern: '^(?=.*?[a-zA-Z_-])(?=.*?\d)[0-9a-zA-Z_-]{8,}$' %>  
+    <div class="invalid-feedback" style="width: 100%">  
+      パスワードを正しいフォーム（数字、小か大文字を含む8文字以上）で入力してください  
+    </div>  
+    <input type= "password" name="password[confirmation]" placeholder="password確認用" id: 'password-confirmation-input', class: 'form-control', required: true, pattern: '^(?=.*?[a-zA-Z_-])(?=.*?\d)[0-9a-zA-Z_-]{8,}$' %>  
+    <div class="invalid-feedback" style="width: 100%">  
+      空欄もしくはパスワードが不一致です  
+    </div>  
+
+<input type= "submit" value="作成">  
+</form>  
