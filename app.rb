@@ -26,25 +26,30 @@ post '/login' do
 end
 
 get '/signup' do
-    if logined_in?
-        redirect '/'
+    
+    csrf_token_generate
+    
+    session[:user_id] ||= nil
+    if session[:user_id]
+        redirect '/create_article'
     else
         slim :signup
     end
 end
 
-post '/signup' do
-    pass = params[:user][:password]
-    ck_pass = params[:password][:confirmation]
-    if pass == ck_pass
-        @user = User.create({:name => params[:user][:name], :email => params[:user][:email], :password => params[:user][:password]})
-    else
+post '/signup' do    
+
+    redirect '/signup' unless params[:csrf_token] == session[:csrf_token]
+    
+    if params[:password] != params[:confirmation]
         redirect '/signup'
     end
+    
+    user = User.new({name: params[:name], email: params[:email], password: params[:password]})
 
-    if @user.save
-        session["user_id"] = @user.id
-        redirect '/'
+    if user.save
+        session["user_id"] = user.id
+        redirect '/login'
     else
         redirect '/signup'
     end

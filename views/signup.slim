@@ -1,19 +1,17 @@
-form method='post' action='/signup'
-<li>  
-名前  
-<input type= "text" name="user[name]" placeholder="name">  
-<li>  
-メールアドレス  
-<input type= "text" name="user[email]" placeholder="email">  
-<li>  
-    <input type= "password" name="user[password]" placeholder="password" id: 'password-input', class: 'form-control', required: true, pattern: '^(?=.*?[a-zA-Z_-])(?=.*?\d)[0-9a-zA-Z_-]{8,}$' %>  
-    <div class="invalid-feedback" style="width: 100%">  
-      パスワードを正しいフォーム（数字、小か大文字を含む8文字以上）で入力してください  
-    </div>  
-    <input type= "password" name="password[confirmation]" placeholder="password確認用" id: 'password-confirmation-input', class: 'form-control', required: true, pattern: '^(?=.*?[a-zA-Z_-])(?=.*?\d)[0-9a-zA-Z_-]{8,}$' %>  
-    <div class="invalid-feedback" style="width: 100%">  
-      空欄もしくはパスワードが不一致です  
-    </div>  
+h1.my-3 サインアップ
 
-<input type= "submit" value="作成">  
-</form>  
+form method='post' action='/signup'
+    .form-group
+        label for="user-name" ユーザネーム
+        input#user_name.form-control type="text" name="name"
+    .form-group
+        label for="email" e-mail
+        input#email.form-control type="email" name="email"
+    .form-group
+        label for="password" パスワード
+        input#password.form-control type="password" name="password"
+    .form-group
+        label for="confirmation" パスワード再入力
+        input#confirmation.form-control type="confirmation" name="confirmation"
+        
+    input.btn.btn-primary.my-3 type="submit" value="作成"
