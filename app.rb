@@ -45,10 +45,10 @@ post '/signup' do
         redirect '/signup'
     end
     
-    user = User.new({name: params[:name], email: params[:email], password: params[:password]})
+    @user = User.new({name: params[:name], email: params[:email], password: params[:password]})
 
-    if user.save
-        session["user_id"] = user.id
+    if @user.save
+        session["user_id"] = @user.id
         redirect '/login'
     else
         redirect '/signup'
