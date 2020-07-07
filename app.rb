@@ -64,7 +64,7 @@ get '/create_article' do
     slim :create_article
 end
 
-post '/atricle_post' do
+post '/article_post' do
     login_required
 
     redirect '/create_article' unless params[:csrf_token] == session[:csrf_token]
@@ -72,10 +72,16 @@ post '/atricle_post' do
     file = params[:file]
     thumbnail_name = file ? file[:filename] : params[:thumbnail]
 
-    @post = Post.new(
-        article_id: params[:id],
-        title: params[:content],
-
+    @article = Article.new(
+        user_id: session["user_id"],
+        title: params[:title],
+        status: 0
     )
 
+    if @article.save
+        # session["user_id"] = @user.id
+        redirect '/create_article'
+    else
+        redirect '/create_article'
+    end
 end

@@ -13,8 +13,9 @@ development:
   password: password # mysqlのパスワードに変更
   encoding: utf8
 ```
-## 初回のみgemのインストールを行う
+## 初回のみgemのインストールとDBのマイグレーションを行う
 bundle install
+bundle exec rake db:migrate
 
 ## 起動コマンド
 bundle exec rackup config.ru
