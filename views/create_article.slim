@@ -5,7 +5,7 @@ form method='post' action='/article_post'
   .form-group
     input.form-control type="text" name="title" value="" placeholder="タイトル"
   .form-group
-    textarea.form-control type="text" name="body" cols="50" rows="16" placeholder="記事を入力"
+    textarea.form-control type="text" name="content" cols="50" rows="16" placeholder="記事を入力"
   .form-group
     input.form-control type="date" name="date" min="#{Time.now.strftime("%Y-%m-%d")}"
   - @articles.each do |article|
