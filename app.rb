@@ -74,6 +74,7 @@ post '/article_post' do
 
     @article = Article.new(
         user_id: session["user_id"],
+        content: params[:content],
         title: params[:title],
         status: 0
     )
